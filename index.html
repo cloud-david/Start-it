@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Start-It | Portal de Incorporación Tecnológica</title>
+<meta name="description" content="Start-It centraliza el acceso, formularios, consultas y resultados de la incorporación tecnológica.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#071525;--navy2:#0d223b;--blue:#1677ff;--cyan:#21b8e7;--ink:#172337;--muted:#64748b;--bg:#f5f8fc;--line:#e4ebf3;--white:#fff;--green:#14966b;--orange:#e89018;--red:#d84a4a}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,Arial,sans-serif;color:var(--ink);background:var(--bg)}
+a{text-decoration:none;color:inherit}button,input,select,textarea{font:inherit}.container{width:min(1180px,92%);margin:auto}
+.nav{height:72px;background:rgba(255,255,255,.97);border-bottom:1px solid var(--line);display:flex;align-items:center;position:sticky;top:0;z-index:50;backdrop-filter:blur(12px)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;width:100%;gap:25px}.brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.04em;font-size:20px}.brand-mark{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--blue),var(--cyan));display:grid;place-items:center;color:#fff;font-weight:800;box-shadow:0 7px 18px rgba(22,119,255,.22)}
+.nav-links{display:flex;gap:26px;color:#526174;font-size:13px;font-weight:600}.nav-links a:hover{color:var(--blue)}
+.nav-btn{border:0;background:var(--navy);color:#fff;padding:11px 17px;border-radius:9px;font-size:13px;font-weight:800;cursor:pointer}.nav-btn:hover{background:#12304f}
+.hero{background:linear-gradient(115deg,#071424,#0d2743 55%,#075474);color:#fff;position:relative;overflow:hidden}.hero:before{content:"";position:absolute;width:600px;height:600px;border:1px solid rgba(255,255,255,.07);border-radius:50%;right:-220px;top:-300px}
+.hero-inner{min-height:430px;display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:center;position:relative;z-index:1;padding:58px 0}
+.eyebrow{color:#82ddfa;font-size:11px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;margin-bottom:16px}.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#35cdf3;margin-right:8px}
+h1{font-size:clamp(40px,5vw,62px);line-height:1.03;letter-spacing:-.055em;margin:0 0 18px}h1 span{color:#5ed8fa}.hero p{font-size:16px;line-height:1.75;color:#c6d4e3;max-width:620px;margin:0}
+.access-card{background:#fff;color:var(--ink);border-radius:18px;padding:26px;box-shadow:0 25px 65px rgba(0,0,0,.25);max-width:455px;justify-self:end;width:100%}
+.card-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}.card-title{font-size:17px;font-weight:800}.badge{font-size:10px;font-weight:800;color:var(--green);background:#e9fbf4;padding:7px 9px;border-radius:20px}
+.form-group{margin-bottom:14px}.form-group label{display:block;font-size:11px;font-weight:700;color:#46566a;margin-bottom:7px}.input,.select,.textarea{width:100%;border:1px solid #dce5ef;background:#fbfdff;border-radius:9px;padding:12px 13px;outline:0;color:var(--ink)}.input:focus,.select:focus,.textarea:focus{border-color:#6faeff;box-shadow:0 0 0 3px rgba(22,119,255,.08)}
+.checkbox{display:flex;gap:9px;align-items:flex-start;font-size:11px;line-height:1.5;color:#65758a;margin:14px 0}.checkbox input{margin-top:2px;accent-color:var(--blue)}
+.primary{width:100%;border:0;background:linear-gradient(135deg,#2383ff,#15b9e6);color:#fff;padding:13px;border-radius:9px;font-weight:800;cursor:pointer}.primary:hover{filter:brightness(1.04);transform:translateY(-1px)}
+.form-note{font-size:10px;color:#8290a2;text-align:center;margin:11px 0 0}.error{display:none;color:var(--red);font-size:11px;margin:8px 0 0}.success{display:none;color:var(--green);font-size:11px;margin:8px 0 0}
+.section{padding:72px 0}.section.alt{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.section-head{max-width:740px;margin:0 auto 34px;text-align:center}.label{font-size:11px;color:var(--blue);font-weight:800;letter-spacing:.12em;text-transform:uppercase}.section h2{font-size:32px;letter-spacing:-.04em;margin:9px 0 10px}.section-head p{color:var(--muted);line-height:1.7;font-size:14px;margin:0}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}.feature,.result-card,.query-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px}.feature-icon{width:40px;height:40px;border-radius:10px;background:#edf5ff;color:var(--blue);display:grid;place-items:center;font-weight:800;margin-bottom:17px}.feature h3,.query-card h3{font-size:15px;margin:0 0 8px}.feature p,.query-card p{font-size:12px;line-height:1.65;color:var(--muted);margin:0}
+.two-col{display:grid;grid-template-columns:.8fr 1.2fr;gap:22px}.panel-white{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px}
+.panel-white h3{font-size:16px;margin:0 0 18px}.row{display:grid;grid-template-columns:1fr 1fr;gap:13px}.textarea{min-height:100px;resize:vertical}.submit{border:0;background:var(--navy);color:#fff;padding:12px 18px;border-radius:9px;font-weight:800;cursor:pointer;margin-top:4px}.submit:hover{background:#12304f}
+.status-list{display:grid;gap:10px}.status-item{display:flex;align-items:center;justify-content:space-between;padding:13px;border:1px solid #e7edf4;border-radius:10px}.status-item strong{font-size:12px}.pill{font-size:10px;font-weight:800;padding:6px 8px;border-radius:20px}.pending{background:#fff5e4;color:#ad6b0d}.approved{background:#e9fbf4;color:#13825d}.review{background:#edf5ff;color:#236cc7}
+.table-wrap{overflow:auto;background:#fff;border:1px solid var(--line);border-radius:14px}.table{width:100%;border-collapse:collapse;min-width:700px}.table th,.table td{text-align:left;padding:14px 16px;border-bottom:1px solid #edf1f5;font-size:12px}.table th{font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:#6a7a8d;background:#fbfdff}.table tr:last-child td{border-bottom:0}
+.notice{padding:13px 15px;border-radius:10px;background:#eef6ff;color:#285e9c;font-size:11px;line-height:1.6;margin-bottom:18px}
+footer{background:#071321;color:#91a5bb;padding:27px 0;font-size:11px}.footer-inner{display:flex;justify-content:space-between;gap:20px}.footer-brand{color:#eaf2fa;font-weight:800}
+.hidden{display:none!important}.toast{position:fixed;right:22px;bottom:22px;background:#0d223b;color:#fff;padding:14px 17px;border-radius:10px;font-size:12px;box-shadow:0 15px 35px rgba(0,0,0,.2);opacity:0;transform:translateY(12px);pointer-events:none;transition:.25s;z-index:100}.toast.show{opacity:1;transform:translateY(0)}
+@media(max-width:900px){.hero-inner,.two-col{grid-template-columns:1fr}.access-card{justify-self:start}.grid{grid-template-columns:1fr 1fr}.nav-links{display:none}}
+@media(max-width:600px){.grid,.row{grid-template-columns:1fr}.hero-inner{padding:45px 0}.access-card{padding:20px}.section{padding:55px 0}.footer-inner{display:block}.footer-inner div+div{margin-top:9px}}
+</style>
+</head>
+<body>
+<header class="nav">
+  <div class="container nav-inner">
+    <a class="brand" href="#inicio"><span class="brand-mark">S</span>START-IT</a>
+    <nav class="nav-links">
+      <a href="#inicio">Inicio</a><a href="#funciones">Funciones</a><a href="#formularios">Formularios</a><a href="#consultas">Consultas</a><a href="#resultados">Resultados</a>
+    </nav>
+    <button class="nav-btn" onclick="document.getElementById('usuario').focus()">Acceso al portal</button>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="inicio">
+  <div class="container hero-inner">
+    <div>
+      <div class="eyebrow"><span class="dot"></span> Plataforma de incorporación tecnológica</div>
+      <h1>Tu primer paso para estar <span>listo para trabajar.</span></h1>
+      <p>Start-It reúne en un solo lugar las cuentas, equipos, permisos y solicitudes que necesita el personal de nuevo ingreso. Menos vueltas, menos errores y mayor control para TI.</p>
+    </div>
+    <div class="access-card" id="acceso">
+      <div class="card-top"><div class="card-title">Acceso al portal</div><div class="badge">● Seguro</div></div>
+      <form id="loginForm">
+        <div class="form-group"><label for="usuario">Usuario o correo corporativo</label><input class="input" id="usuario" type="text" placeholder="nombre@empresa.com" required></div>
+        <div class="form-group"><label for="password">Contraseña</label><input class="input" id="password" type="password" placeholder="Ingresa tu contraseña" required></div>
+        <label class="checkbox"><input id="promos" type="checkbox"> <span>Acepto recibir formularios, avisos y promociones relacionadas con Start-It. Podré cambiar esta preferencia posteriormente.</span></label>
+        <button class="primary" type="submit">Iniciar sesión →</button>
+        <div class="error" id="loginError">Ingresa tu usuario y contraseña para continuar.</div>
+        <div class="success" id="loginSuccess">Acceso de demostración iniciado. Ya puedes consultar el portal.</div>
+        <div class="form-note">Demo académica · No introduzcas contraseñas reales.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="funciones">
+  <div class="container">
+    <div class="section-head"><div class="label">Navegación principal</div><h2>Un solo portal para toda la incorporación</h2><p>La navegación se organiza en funciones claras para que el nuevo colaborador sepa qué hacer, qué solicitar y cuál es el estado de cada proceso.</p></div>
+    <div class="grid">
+      <article class="feature"><div class="feature-icon">01</div><h3>Formularios</h3><p>Captura los datos necesarios para generar solicitudes de cuentas, equipos y permisos.</p></article>
+      <article class="feature"><div class="feature-icon">02</div><h3>Consultas</h3><p>Busca solicitudes, servicios, responsables y requisitos sin depender de terceros.</p></article>
+      <article class="feature"><div class="feature-icon">03</div><h3>Resultados</h3><p>Visualiza estados, respuestas y avances de la incorporación de forma centralizada.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="formularios">
+  <div class="container">
+    <div class="section-head"><div class="label">Formularios esenciales</div><h2>Solicita tus recursos tecnológicos</h2><p>Completa la información básica y Start-It registra la solicitud para su revisión.</p></div>
+    <div class="two-col">
+      <div class="panel-white">
+        <h3>¿Qué necesitas?</h3>
+        <div class="notice">Selecciona el recurso principal que requiere tu puesto. El área responsable revisará y autorizará la solicitud.</div>
+        <div class="status-list">
+          <div class="status-item"><strong>Cuenta corporativa</strong><span class="pill approved">Disponible</span></div>
+          <div class="status-item"><strong>Equipo de cómputo</strong><span class="pill review">Por solicitar</span></div>
+          <div class="status-item"><strong>Permisos de sistemas</strong><span class="pill review">Por solicitar</span></div>
+          <div class="status-item"><strong>Acceso a red / VPN</strong><span class="pill pending">Requiere autorización</span></div>
+        </div>
+      </div>
+      <div class="panel-white">
+        <h3>Formulario de incorporación</h3>
+        <form id="requestForm">
+          <div class="row">
+            <div class="form-group"><label>Nombre completo</label><input class="input" name="nombre" placeholder="Nombre del colaborador" required></div>
+            <div class="form-group"><label>Área</label><select class="select" name="area" required><option value="">Selecciona un área</option><option>Redes y TI</option><option>Administración</option><option>Ventas</option><option>Compras</option><option>Operaciones</option></select></div>
+          </div>
+          <div class="row">
+            <div class="form-group"><label>Puesto</label><input class="input" name="puesto" placeholder="Puesto de trabajo" required></div>
+            <div class="form-group"><label>Recurso solicitado</label><select class="select" name="recurso" required><option value="">Selecciona</option><option>Cuenta corporativa</option><option>Equipo de cómputo</option><option>Permisos de sistemas</option><option>Red / VPN</option></select></div>
+          </div>
+          <div class="form-group"><label>Observaciones</label><textarea class="textarea" name="observaciones" placeholder="Información adicional de la solicitud"></textarea></div>
+          <button class="submit" type="submit">Enviar solicitud</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="consultas">
+  <div class="container">
+    <div class="section-head"><div class="label">Consultas esenciales</div><h2>Encuentra la información que necesitas</h2><p>Consulta rápidamente solicitudes y servicios para conocer responsables, estados y próximos pasos.</p></div>
+    <div class="two-col">
+      <div class="panel-white">
+        <h3>Buscar solicitud</h3>
+        <div class="form-group"><label>Número de solicitud</label><input class="input" id="searchId" placeholder="Ej. STI-2026-001"></div>
+        <button class="submit" onclick="consultar()">Consultar estado</button>
+        <div class="form-note" style="text-align:left;margin-top:14px">Para la demostración, cualquier número mostrará un resultado de ejemplo.</div>
+      </div>
+      <div class="panel-white" id="queryResult">
+        <h3>Resultado de consulta</h3>
+        <div class="status-item"><strong>Solicitud STI-2026-001</strong><span class="pill review">En revisión</span></div>
+        <p style="font-size:12px;color:#64748b;line-height:1.7;margin:14px 0 0">Responsable: Área de Redes y TI<br>Última actualización: Hoy<br>Próximo paso: Validación de permisos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="resultados">
+  <div class="container">
+    <div class="section-head"><div class="label">Resultados esenciales</div><h2>Panel de seguimiento</h2><p>Una vista resumida permite identificar qué está listo y qué sigue pendiente antes del primer día de trabajo.</p></div>
+    <div class="table-wrap">
+      <table class="table">
+        <thead><tr><th>Solicitud</th><th>Recurso</th><th>Responsable</th><th>Fecha</th><th>Estado</th></tr></thead>
+        <tbody id="resultsBody">
+          <tr><td>STI-2026-001</td><td>Cuenta corporativa</td><td>Redes y TI</td><td>12/09/2026</td><td><span class="pill approved">Aprobada</span></td></tr>
+          <tr><td>STI-2026-002</td><td>Equipo de cómputo</td><td>Soporte TI</td><td>12/09/2026</td><td><span class="pill review">En revisión</span></td></tr>
+          <tr><td>STI-2026-003</td><td>Permisos de sistemas</td><td>Responsable de área</td><td>12/09/2026</td><td><span class="pill pending">Pendiente</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer id="soporte">
+  <div class="container footer-inner"><div><span class="footer-brand">START-IT</span> · Plataforma de incorporación tecnológica</div><div>Soporte TI · Formularios · Consultas · Resultados</div></div>
+</footer>
+<div class="toast" id="toast">Solicitud registrada correctamente.</div>
+
+<script>
+document.getElementById('loginForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const u=document.getElementById('usuario').value.trim(), p=document.getElementById('password').value.trim();
+  const err=document.getElementById('loginError'), ok=document.getElementById('loginSuccess');
+  if(!u||!p){err.style.display='block';ok.style.display='none';return;}
+  err.style.display='none';ok.style.display='block';
+  setTimeout(()=>document.getElementById('formularios').scrollIntoView({behavior:'smooth'}),500);
+});
+document.getElementById('requestForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const id='STI-2026-'+String(Math.floor(Math.random()*900)+100);
+  const data=new FormData(this), recurso=data.get('recurso'), area=data.get('area');
+  const tr=document.createElement('tr');
+  tr.innerHTML='<td>'+id+'</td><td>'+recurso+'</td><td>'+area+'</td><td>'+new Date().toLocaleDateString('es-MX')+'</td><td><span class="pill review">En revisión</span></td>';
+  document.getElementById('resultsBody').prepend(tr);
+  this.reset(); showToast('Solicitud '+id+' registrada correctamente.');
+  document.getElementById('resultados').scrollIntoView({behavior:'smooth'});
+});
+function consultar(){
+  const id=document.getElementById('searchId').value.trim()||'STI-2026-001';
+  document.getElementById('queryResult').innerHTML='<h3>Resultado de consulta</h3><div class="status-item"><strong>Solicitud '+id+'</strong><span class="pill review">En revisión</span></div><p style="font-size:12px;color:#64748b;line-height:1.7;margin:14px 0 0">Responsable: Área de Redes y TI<br>Última actualización: '+new Date().toLocaleDateString('es-MX')+'<br>Próximo paso: Validación de permisos.</p>';
+}
+function showToast(t){const el=document.getElementById('toast');el.textContent=t;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2800)}
+</script>
+</body>
+</html>
