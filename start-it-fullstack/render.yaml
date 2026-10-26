@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: start-it-xali
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: start-it-db
+          property: connectionString
+
+databases:
+  - name: start-it-db
+    plan: free
+    databaseName: startit
+    user: startit
